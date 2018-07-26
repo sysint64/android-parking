@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="roundButtonCornerRadius">48dp</dimen>
+    <dimen name="roundButtonHeight">36dp</dimen>
+    <dimen name="ghostButtonCornerRadius">4dp</dimen>
+    <dimen name="ghostButtonHeight">21dp</dimen>
+</resources>

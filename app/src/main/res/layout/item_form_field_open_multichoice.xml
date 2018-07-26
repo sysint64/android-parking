@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <LinearLayout
+        android:id="@+id/formContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/AppTheme.GhostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/ghost_button_height"
+        android:layout_marginStart="12dp"
+        android:text="@string/display_all" />
+</LinearLayout>

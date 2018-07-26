@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="ghost_button_text_color" format="color" />
+    <attr name="ghost_button_text_color_pressed" format="color" />
+    <attr name="ghost_button_text_color_disabled" format="color" />
+    <attr name="ghost_button_background_pressed" format="color" />
+    <attr name="ghost_button_text_size" format="dimension" />
+    <attr name="ghost_button_height" format="dimension" />
+</resources>

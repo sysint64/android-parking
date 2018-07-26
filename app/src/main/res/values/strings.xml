@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">parking</string>
+    <string name="app_name" translatable="false">parking</string>
+    <string name="file_provider" translatable="false">ru.kabylin.andrey.parking.file_provider</string>
+
+    <string name="time_is_out">Время на ответ от сервера вышло\nпопробуйте позже</string>
+    <string name="lost_connection">Соединение потеряно, проверьте подключение к интернету</string>
+    <string name="too_many_requests">Слишком много запросов\nпопробуйте позже</string>
+    <string name="version_error_warning">Похоже ваша версия устарела, советуем обновиться</string>
+    <string name="bad_response">Сервер вернул не валидный ответ, проверьте версию приложения, если это не поможет, обратитесь в тех поддержку.</string>
+    <string name="internal_server_error">Произошла ошибка на сервере\nпожалуйста, попробуйте позже</string>
+    <string name="not_found">Ресурс не найдет</string>
+    <string name="unspecified_access_error">Не удалось получить доступ: не известаня ошибка</string>
+    <string name="retry">Повторить</string>
+    <string name="close">Закрыть</string>
+    <string name="update">Обновить</string>
+    <string name="not_found_error_description">К сожалению данного ресурса больше нет в системе либо сервер временно не доступен\n\nпопробуйте выбрать что нибудь другое либо повторите запрос позже. Также проверьте весрию приложения, возможно есть обновления.</string>
+
+    <string name="permission_not_granted">Нужно ваше разрешение</string>
+    <string name="canceled">Отменено</string>
+    <string name="not_found_any_items">По вашему запросу ничего не найдено</string>
+    <string name="email_validation_error">Email не валидный</string>
+    <string name="min_error">Строка слишком маленькая (минимум %d символов)</string>
+    <string name="max_error">Строка слишком длинная (максимум %d символов)</string>
+    <string name="int_validation_error">Допускаются только числа</string>
+    <string name="phone_validation_error">Номер телефона не валидный</string>
+    <string name="required_error">Поле обязательно к заполнению</string>
+
+    <string name="select">Выбрать</string>
+    <string name="select_address_description">Укажите точный адрес парковки</string>
+    <string name="display_all">Показать все</string>
+    <string name="view_on_map">Посмотреть на карте</string>
 </resources>
