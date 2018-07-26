@@ -25,7 +25,7 @@ class DefaultFieldDecorator : FieldDecorator {
     }
 
     private fun isHandleErrorVisibility(field: Field): Boolean {
-        val handle = handleLabelVisibility[field]
+        val handle = handleErrorVisibility[field]
         return handle == null || handle
     }
 

@@ -178,6 +178,9 @@ open class Form(val context: Context) {
         for (field in fields)
             encoder.decode(field)
     }
+
+    fun clear() {
+    }
 }
 
 // DSL

@@ -14,7 +14,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        def apiEndpoint = properties.getOrDefault('api.endpoint', '"http://35.237.116.16/api"')
+        def apiEndpoint = properties.getOrDefault('api.endpoint', '"http://35.237.116.16/api/"')
         buildConfigField("String", "API_ENDPOINT", apiEndpoint)
     }
     buildTypes {
@@ -53,6 +53,10 @@ dependencies {
 
     implementation "org.kodein.di:kodein-di-generic-jvm:5.0.0"
     implementation "org.kodein.di:kodein-di-framework-android:5.0.0"
+
+    // Appearance
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     // Google Services
     implementation "com.google.maps:google-maps-services:0.2.4"

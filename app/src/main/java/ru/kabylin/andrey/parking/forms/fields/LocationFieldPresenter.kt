@@ -10,6 +10,8 @@ import ru.kabylin.andrey.parking.router.Router
 import ru.kabylin.andrey.parking.views.CommonScreens
 import ru.kabylin.andrey.parking.views.ViewState
 import com.google.android.gms.location.places.ui.PlacePicker
+import io.reactivex.Single
+import org.jetbrains.anko.runOnUiThread
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import ru.kabylin.andrey.parking.client.ClientAware
@@ -46,6 +48,8 @@ open class LocationFieldPresenter : FieldPresenter() {
         }
 
         trigger.setOnClickListener {
+            field.clearError()
+
             if (readOnly) {
 //                val bundle = selected.createLocationBundle()
 //                viewState.gotoScreen(CommonScreens.LOCATION_ON_MAP, bundle)
@@ -70,13 +74,15 @@ open class LocationFieldPresenter : FieldPresenter() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    private fun hideProgressbar() {
         if (progressView != null) {
             progressView?.invisibleView()
             trigger.showView()
             trigger.enable()
         }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode != Activity.RESULT_OK || data == null)
             return
 
@@ -85,12 +91,18 @@ open class LocationFieldPresenter : FieldPresenter() {
             val client = (field.form.context as ClientAware).client
             val placesService : PlacesService by (field.form.context as KodeinAware).instance()
             val query = placesService.getLocationForPlace(place)
+                .onErrorResumeNext {
+                    field.form.context.runOnUiThread { hideProgressbar() }
+                    val error = LogicError(R.string.error_while_get_place_info)
+                    Single.error(error)
+                }
 
             client.execute(query) {
                 select(it.payload)
+                hideProgressbar()
 
                 if (!it.payload.isFilled())
-                    client.onError(LogicError(DescReason.string("Не удалось распознать место\nПопробуйте выбрать что-то другое")))
+                    client.onError(LogicError(R.string.unknown_place_error))
             }
         }
     }

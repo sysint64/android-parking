@@ -22,6 +22,6 @@ fun dependencies(context: Context) = Kodein.Module {
         HttpClientCompositor(client = instance<Client>() as HttpClient)
     }
 
-    bind<PlacesService>() with singleton { HttpPlacesService(httpClient, "") }
+    bind<PlacesService>() with singleton { HttpPlacesService(httpClient, "AIzaSyApPShMK8awEZJOlODR6fWC4m5fdTpgr0g") }
     bind<ParkingService>() with singleton { HttpParkingService(httpClient) }
 }

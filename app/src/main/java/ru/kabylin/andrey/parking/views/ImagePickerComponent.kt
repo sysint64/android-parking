@@ -3,9 +3,11 @@ package ru.kabylin.andrey.parking.views
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
+import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import ru.kabylin.andrey.parking.R
@@ -21,6 +23,9 @@ class ImagePickerComponent(val activity: Activity) {
     }
 
     var capturedPhotoPath: String? = null
+        private set
+
+    var photoUri: Uri? = null
         private set
 
     fun openCamera() {
@@ -100,5 +105,36 @@ class ImagePickerComponent(val activity: Activity) {
 
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
         activity.startActivityForResult(takePictureIntent, REQUEST_FOR_RESULT_CAPTURE_IMAGE)
+    }
+
+    fun isComponentResult(requestCode: Int): Boolean =
+        requestCode == ImagePickerComponent.REQUEST_FOR_RESULT_PICK_IMAGE ||
+            requestCode == ImagePickerComponent.REQUEST_FOR_RESULT_CAPTURE_IMAGE
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        when (requestCode) {
+            ImagePickerComponent.REQUEST_FOR_RESULT_PICK_IMAGE -> {
+                if (resultCode != AppCompatActivity.RESULT_OK)
+                    return false
+
+                val imageUri = data?.data ?: return false
+
+                photoUri = imageUri
+                return true
+            }
+
+            ImagePickerComponent.REQUEST_FOR_RESULT_CAPTURE_IMAGE -> {
+                if (resultCode != AppCompatActivity.RESULT_OK)
+                    return false
+
+                if (capturedPhotoPath == null)
+                    return false
+
+                photoUri = Uri.parse(capturedPhotoPath)
+                return true
+            }
+        }
+
+        return false
     }
 }

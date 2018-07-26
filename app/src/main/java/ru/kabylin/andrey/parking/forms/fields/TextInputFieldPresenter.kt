@@ -15,6 +15,7 @@ class TextInputFieldPresenter : FieldPresenter() {
     private var textInputLayout: TextInputLayout? = null
     private var errorTextView: TextView? = null
     private var text: String = ""
+    private var editTextInit: (() -> Unit)? = null
 
     var hint: String = ""
         set(value) {
@@ -57,6 +58,8 @@ class TextInputFieldPresenter : FieldPresenter() {
                 }
             }
         )
+
+        editTextInit?.invoke()
     }
 
     override fun setVisible(isVisible: Boolean) {
@@ -86,7 +89,14 @@ class TextInputFieldPresenter : FieldPresenter() {
     }
 
     fun editTextAttrs(init: (EditText).() -> Unit) {
-        editText.init()
+        if (::editText.isInitialized) {
+            editText.init()
+        }
+        else {
+            editTextInit = {
+                editText.init()
+            }
+        }
     }
 
     fun textInputLayoutAttrs(init: (TextInputLayout).() -> Unit) {

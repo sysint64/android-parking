@@ -10,6 +10,8 @@ import ru.kabylin.andrey.parking.client.Client
 import java.util.concurrent.TimeUnit
 
 object HttpClient : Client() {
+    const val MAX_UPLOAD_SIZE_IN_BYTES = 1024 * 1024 * 5  // 5 MB
+
     private val mainApiRetrofit by lazy {
         val endpoint = BuildConfig.API_ENDPOINT
         retrofitBuilder(endpoint)
